@@ -14,7 +14,6 @@ import com.ifpb.DevOps_Homestead.service.ListaAfazeresService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
