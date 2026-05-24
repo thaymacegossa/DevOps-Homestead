@@ -110,4 +110,5 @@ public class ListaComprasController {
     public String index() {
         return "redirect:/lista-compras";
     }
+    
 }
