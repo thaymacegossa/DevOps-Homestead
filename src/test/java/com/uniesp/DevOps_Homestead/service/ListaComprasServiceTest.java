@@ -20,7 +20,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.uniesp.DevOps_Homestead.domain.ListaCompras;
 import com.uniesp.DevOps_Homestead.repository.ListaComprasRepository;
-import com.uniesp.DevOps_Homestead.service.ListaComprasService;
 
 @ExtendWith(MockitoExtension.class)
 class ListaComprasServiceTest {

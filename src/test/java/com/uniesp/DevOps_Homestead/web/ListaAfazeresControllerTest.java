@@ -19,7 +19,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
 import com.uniesp.DevOps_Homestead.domain.ListaAfazeres;
 import com.uniesp.DevOps_Homestead.service.ListaAfazeresService;
-import com.uniesp.DevOps_Homestead.web.ListaAfazeresController;
 
 @ExtendWith(MockitoExtension.class)
 class ListaAfazeresControllerTest {

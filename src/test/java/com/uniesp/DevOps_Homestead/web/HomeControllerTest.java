@@ -17,7 +17,6 @@ import com.uniesp.DevOps_Homestead.domain.ListaAfazeres;
 import com.uniesp.DevOps_Homestead.domain.ListaCompras;
 import com.uniesp.DevOps_Homestead.service.ListaAfazeresService;
 import com.uniesp.DevOps_Homestead.service.ListaComprasService;
-import com.uniesp.DevOps_Homestead.web.HomeController;
 
 @ExtendWith(MockitoExtension.class)
 class HomeControllerTest {

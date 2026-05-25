@@ -20,7 +20,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
 import com.uniesp.DevOps_Homestead.domain.ListaCompras;
 import com.uniesp.DevOps_Homestead.service.ListaComprasService;
-import com.uniesp.DevOps_Homestead.web.ListaComprasController;
 
 @ExtendWith(MockitoExtension.class)
 class ListaComprasControllerTest {

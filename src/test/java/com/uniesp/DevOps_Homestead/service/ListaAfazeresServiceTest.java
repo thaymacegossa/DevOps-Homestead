@@ -20,7 +20,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.uniesp.DevOps_Homestead.domain.ListaAfazeres;
 import com.uniesp.DevOps_Homestead.repository.ListaAfazeresRepository;
-import com.uniesp.DevOps_Homestead.service.ListaAfazeresService;
 
 @ExtendWith(MockitoExtension.class)
 class ListaAfazeresServiceTest {
