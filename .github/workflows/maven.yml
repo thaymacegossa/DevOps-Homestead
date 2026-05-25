@@ -11,6 +11,10 @@ jobs:
     name: Build & Test (Java ${{ matrix.java-version }})
     runs-on: ubuntu-latest
 
+    permissions:
+      checks: write
+      contents: read
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
