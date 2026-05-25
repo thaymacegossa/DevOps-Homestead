@@ -1,4 +1,4 @@
-package com.ifpb.DevOps_Homestead.domain;
+package com.uniesp.DevOps_Homestead.domain;
 
 import java.time.LocalDateTime;
 

@@ -1,13 +1,13 @@
-package com.ifpb.DevOps_Homestead.service;
+package com.uniesp.DevOps_Homestead.service;
 
 import java.util.List;
 import java.time.LocalDateTime;
 
-import com.ifpb.DevOps_Homestead.domain.ListaAfazeres;
-import com.ifpb.DevOps_Homestead.repository.ListaAfazeresRepository;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.uniesp.DevOps_Homestead.domain.ListaAfazeres;
+import com.uniesp.DevOps_Homestead.repository.ListaAfazeresRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

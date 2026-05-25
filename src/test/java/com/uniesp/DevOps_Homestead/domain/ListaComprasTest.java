@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
 
-import com.ifpb.DevOps_Homestead.domain.ListaCompras;
+import com.uniesp.DevOps_Homestead.domain.ListaCompras;
 
 class ListaComprasTest {
 

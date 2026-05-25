@@ -18,9 +18,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
-import com.ifpb.DevOps_Homestead.domain.ListaCompras;
-import com.ifpb.DevOps_Homestead.service.ListaComprasService;
-import com.ifpb.DevOps_Homestead.web.ListaComprasController;
+import com.uniesp.DevOps_Homestead.domain.ListaCompras;
+import com.uniesp.DevOps_Homestead.service.ListaComprasService;
+import com.uniesp.DevOps_Homestead.web.ListaComprasController;
 
 @ExtendWith(MockitoExtension.class)
 class ListaComprasControllerTest {

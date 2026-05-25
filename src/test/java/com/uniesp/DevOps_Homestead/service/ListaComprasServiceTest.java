@@ -18,9 +18,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.ifpb.DevOps_Homestead.domain.ListaCompras;
-import com.ifpb.DevOps_Homestead.repository.ListaComprasRepository;
-import com.ifpb.DevOps_Homestead.service.ListaComprasService;
+import com.uniesp.DevOps_Homestead.domain.ListaCompras;
+import com.uniesp.DevOps_Homestead.repository.ListaComprasRepository;
+import com.uniesp.DevOps_Homestead.service.ListaComprasService;
 
 @ExtendWith(MockitoExtension.class)
 class ListaComprasServiceTest {

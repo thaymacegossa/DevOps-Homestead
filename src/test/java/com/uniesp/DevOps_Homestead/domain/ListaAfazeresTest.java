@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
-import com.ifpb.DevOps_Homestead.domain.ListaAfazeres;
+import com.uniesp.DevOps_Homestead.domain.ListaAfazeres;
 
 class ListaAfazeresTest {
 

@@ -1,4 +1,4 @@
-package com.ifpb.DevOps_Homestead.web;
+package com.uniesp.DevOps_Homestead.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.ifpb.DevOps_Homestead.domain.ListaAfazeres;
-import com.ifpb.DevOps_Homestead.service.ListaAfazeresService;
+import com.uniesp.DevOps_Homestead.domain.ListaAfazeres;
+import com.uniesp.DevOps_Homestead.service.ListaAfazeresService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
