@@ -23,7 +23,7 @@ public class ListaAfazeres {
     private String descricao;
 
     @Column(name = "status", nullable = false)
-    private Boolean status;
+    private String status;
 
     @Column(name = "prazo_conclusao")
     private java.time.LocalDate prazoConclusao;
