@@ -29,6 +29,9 @@ jobs:
       - name: Build and run tests
         run: mvn -B -V -e clean verify
 
+      - name: Run SonarCloud analysis
+        run: mvn -B sonar:sonar -Dsonar.login=${{ secrets.SONAR_TOKEN }} -Dsonar.qualitygate.wait=true
+
       - name: Publish JUnit test results
         if: always()
         uses: dorny/test-reporter@v1
