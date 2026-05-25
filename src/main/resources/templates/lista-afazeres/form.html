@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/base}">
+<head>
+    <title th:text="${isEdicao} ? 'Editar tarefa' : 'Nova tarefa'">Formulário</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <h1 class="mb-4" th:text="${isEdicao} ? 'Editar tarefa' : 'Nova tarefa'"></h1>
+
+        <form th:object="${item}" th:action="${isEdicao} ? @{/lista-afazeres/atualizar} : @{/lista-afazeres}" method="post" class="row g-3">
+            <input type="hidden" th:field="*{id}" th:if="${isEdicao}">
+
+            <div class="col-12">
+                <label class="form-label" for="descricao">Descrição</label>
+                <input type="text" class="form-control" id="descricao" th:field="*{descricao}" required maxlength="255">
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label" for="status">Status</label>
+                <select class="form-select" id="status" th:field="*{status}" required>
+                    <option value="" disabled th:if="${item.status == null}" selected>Selecione...</option>
+                    <option value="PENDENTE" th:selected="${item.status == 'PENDENTE'}">Pendente</option>
+                    <option value="CONCLUIDA" th:selected="${item.status == 'CONCLUIDA'}">Concluída</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label" for="prazoConclusao">Prazo de Conclusão</label>
+                <input type="date" class="form-control" id="prazoConclusao" th:field="*{prazoConclusao}" required>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label" for="importancia">Importância</label>
+                <select class="form-select" id="importancia" th:field="*{importancia}" required>
+                    <option value="" disabled th:if="${item.importancia == null}" selected>Selecione...</option>
+                    <option value="0" th:selected="${item.importancia == 0}">Baixa</option>
+                    <option value="1" th:selected="${item.importancia == 1}">Média</option>
+                    <option value="2" th:selected="${item.importancia == 2}">Alta</option>
+                </select>
+            </div>
+
+            <div class="col-12 d-flex gap-2">
+                <a class="btn btn-secondary" href="/lista-afazeres">Cancelar</a>
+                <button class="btn btn-primary" type="submit" th:text="${isEdicao} ? 'Atualizar' : 'Inserir'"></button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

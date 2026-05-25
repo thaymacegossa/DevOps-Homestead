@@ -1,21 +1,25 @@
-package com.ifpb.DevOps_Homestead.service;
-
-import com.ifpb.DevOps_Homestead.domain.ListaCompras;
-import com.ifpb.DevOps_Homestead.repository.ListaComprasRepository;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+package com.uniesp.DevOps_Homestead.service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.uniesp.DevOps_Homestead.domain.ListaCompras;
+import com.uniesp.DevOps_Homestead.repository.ListaComprasRepository;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
 @Transactional
 public class ListaComprasService {
+
+    private static String ID_NAO_ENCONTRADO = "Item não encontrado com ID: ";
 
     private final ListaComprasRepository repository;
 
@@ -28,7 +32,7 @@ public class ListaComprasService {
     public ListaCompras buscarPorId(Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> {
-                    return new IllegalArgumentException("Item não encontrado com ID: " + id);
+                    return new IllegalArgumentException(ID_NAO_ENCONTRADO + id);
                 });
     }
 
@@ -45,7 +49,7 @@ public class ListaComprasService {
     public ListaCompras atualizar(ListaCompras formItem) {
         ListaCompras item = repository.findById(formItem.getId())
                 .orElseThrow(() -> {
-                    return new IllegalArgumentException("Item não encontrado com ID: " + formItem.getId());
+                    return new IllegalArgumentException(ID_NAO_ENCONTRADO + formItem.getId());
                 });
 
         validar(formItem);
@@ -61,7 +65,7 @@ public class ListaComprasService {
 
     public void deletar(Long id) {
         if (!repository.existsById(id)) {
-            throw new IllegalArgumentException("Item não encontrado com ID: " + id);
+            throw new IllegalArgumentException(ID_NAO_ENCONTRADO + id);
         }
 
         repository.deleteById(id);

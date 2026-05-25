@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/base}">
+<head>
+    <title>Lista de Afazeres</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <h1 class="mb-4">Lista de Afazeres</h1>
+
+        <div class="mb-3 d-flex justify-content-between">
+            <a class="btn btn-primary" href="/lista-afazeres/novo">Nova tarefa</a>
+            <div>
+                <strong>Total itens:</strong> <span th:text="${totalItens}">0</span>
+            </div>
+        </div>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Descrição</th>
+                    <th>Status</th>
+                    <th>Prazo de Conclusão</th>
+                    <th>Importância</th>
+                    <th>Criado Em</th>
+                    <th>Atualizado Em</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="item : ${itens}">
+                    <td th:text="${item.id}"></td>
+                    <td th:text="${item.descricao}"></td>
+                    <td>
+                        <span th:text="${item.status}" th:class="|badge ${item.status == 'CONCLUIDA' ? 'bg-success' : 'bg-warning text-dark'}|"></span>
+                    </td>
+                    <td th:text="${#temporals.format(item.prazoConclusao, 'dd/MM/yyyy')}"></td>
+                    <td th:text="${item.importancia == 2 ? 'Alta' : item.importancia == 1 ? 'Média' : 'Baixa'}"></td>
+                    <td th:text="${#temporals.format(item.criadoEm, 'dd/MM/yyyy HH:mm')}"></td>
+                    <td th:text="${#temporals.format(item.atualizadoEm, 'dd/MM/yyyy HH:mm')}"></td>
+                    <td>
+                        <a class="btn btn-sm btn-warning" th:href="@{/lista-afazeres/{id}/editar(id=${item.id})}">Editar</a>
+                        <a class="btn btn-sm btn-danger" th:href="@{/lista-afazeres/{id}/deletar(id=${item.id})}" onclick="return confirm('Excluir tarefa?')">Excluir</a>
+                    </td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(itens)}">
+                    <td colspan="8" class="text-center">Nenhuma tarefa cadastrada.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
