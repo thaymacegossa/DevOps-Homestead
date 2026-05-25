@@ -44,3 +44,12 @@ COMMENT ON COLUMN lista_afazeres.prazo_conclusao IS 'Prazo de conclusão da tare
 COMMENT ON COLUMN lista_afazeres.importancia IS 'Importância da tarefa, onde 0 é baixa, 1 é média e 2 é alta';
 COMMENT ON COLUMN lista_afazeres.criado_em IS 'Data e hora de criação da tarefa';
 COMMENT ON COLUMN lista_afazeres.atualizado_em IS 'Data e hora da última atualização da tarefa';
+
+INSERT INTO lista_compras (descricao, preco_unitario, quantidade, total) VALUES
+('Cuscuz', 3.50, 2, 7.00),
+('Pão', 1.20, 5, 6.00),
+('Ovos', 0.50, 12, 6.00);
+
+INSERT INTO lista_afazeres (descricao, "status", prazo_conclusao, importancia) VALUES
+('Comprar mantimentos', 'pendente', '2026-05-27', 1),
+('Fazer exercícios', 'pendente', '2026-07-27', 0);
