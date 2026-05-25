@@ -30,7 +30,7 @@ jobs:
         run: mvn -B -V -e clean verify
 
       - name: Run SonarCloud analysis
-        run: mvn -B sonar:sonar -Dsonar.login=${{ secrets.SONAR_TOKEN }} -Dsonar.qualitygate.wait=true
+        run: mvn -B sonar:sonar -Dsonar.login=${{ secrets.SONAR_TOKEN }} -Dsonar.host.url=https://sonarcloud.io -Dsonar.projectKey=tthaisvale_DevOps-Homestead -Dsonar.organization=tthaisvale -Dsonar.qualitygate.wait=true
 
       - name: Publish JUnit test results
         if: always()
