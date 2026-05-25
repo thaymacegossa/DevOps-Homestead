@@ -22,10 +22,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ListaAfazeresController {
 
-    private static String FLASH_MESSAGE = "mensagem";
-    private static String FLASH_TYPE = "tipo";
-    private static String TIPO_SUCESSO = "sucesso";
-    private static String TIPO_ERRO = "erro";
     private static String REDIRECT_LISTAGEM = "redirect:/lista-afazeres";
 
     private final ListaAfazeresService service;
@@ -48,18 +44,14 @@ public class ListaAfazeresController {
     @PostMapping
     public String criar(@ModelAttribute ListaAfazeres item,
                        RedirectAttributes redirectAttributes) {
-        try {
-            service.criar(item);
-            redirectAttributes.addFlashAttribute(FLASH_MESSAGE, "Tarefa criada com sucesso!");
-            redirectAttributes.addFlashAttribute(FLASH_TYPE, TIPO_SUCESSO);
-
-            return REDIRECT_LISTAGEM;
-        } catch (Exception e) {
-            log.error("Erro ao criar tarefa", e);
-            redirectAttributes.addFlashAttribute(FLASH_MESSAGE, "Erro ao criar tarefa: " + e.getMessage());
-            redirectAttributes.addFlashAttribute(FLASH_TYPE, TIPO_ERRO);
-            return REDIRECT_LISTAGEM + "/novo";
-        }
+        return HelperController.criarComRedirecionamento(
+                () -> service.criar(item),
+                "Tarefa criada com sucesso!",
+                "Erro ao criar tarefa",
+                REDIRECT_LISTAGEM,
+                REDIRECT_LISTAGEM + "/novo",
+                redirectAttributes);
+            
     }
 
     @GetMapping("/{id}/editar")
@@ -71,8 +63,8 @@ public class ListaAfazeresController {
             return "lista-afazeres/form";
         } catch (Exception e) {
             log.error("Erro ao buscar tarefa para edição", e);
-            model.addAttribute(FLASH_MESSAGE, "Tarefa não encontrada: " + e.getMessage());
-            model.addAttribute(FLASH_TYPE, TIPO_ERRO);
+            model.addAttribute("mensagem", "Tarefa não encontrada: " + e.getMessage());
+            model.addAttribute("tipo", "erro");
             return REDIRECT_LISTAGEM;
         }
     }
@@ -80,32 +72,23 @@ public class ListaAfazeresController {
     @PostMapping("/atualizar")
     public String atualizar(@ModelAttribute ListaAfazeres item,
                             RedirectAttributes redirectAttributes) {
-        try {
-            service.atualizar(item);
-            redirectAttributes.addFlashAttribute(FLASH_MESSAGE, "Tarefa atualizada com sucesso!");
-            redirectAttributes.addFlashAttribute(FLASH_TYPE, TIPO_SUCESSO);
-
-            return REDIRECT_LISTAGEM;
-        } catch (Exception e) {
-            log.error("Erro ao atualizar tarefa", e);
-            redirectAttributes.addFlashAttribute(FLASH_MESSAGE, "Erro ao atualizar tarefa: " + e.getMessage());
-            redirectAttributes.addFlashAttribute(FLASH_TYPE, TIPO_ERRO);
-            return REDIRECT_LISTAGEM + "/" + item.getId() + "/editar";
-        }
+        return HelperController.atualizarComRedirecionamento(
+                () -> service.atualizar(item),
+                "Tarefa atualizada com sucesso!",
+                "Erro ao atualizar tarefa",
+                REDIRECT_LISTAGEM,
+                () -> REDIRECT_LISTAGEM + "/" + item.getId() + "/editar",
+                redirectAttributes);
     }
 
     @GetMapping("/{id}/deletar")
     public String deletar(@PathVariable Long id, RedirectAttributes redirectAttributes) {
-        try {
-            service.deletar(id);
-            redirectAttributes.addFlashAttribute(FLASH_MESSAGE, "Tarefa deletada com sucesso!");
-            redirectAttributes.addFlashAttribute(FLASH_TYPE, TIPO_SUCESSO);
-        } catch (Exception e) {
-            log.error("Erro ao deletar tarefa", e);
-            redirectAttributes.addFlashAttribute(FLASH_MESSAGE, "Erro ao deletar tarefa: " + e.getMessage());
-            redirectAttributes.addFlashAttribute(FLASH_TYPE, TIPO_ERRO);
-        }
-        return REDIRECT_LISTAGEM;
+        return HelperController.deletarComRedirecionamento(
+                () -> service.deletar(id),
+                "Tarefa deletada com sucesso!",
+                "Erro ao deletar tarefa",
+                REDIRECT_LISTAGEM,
+                redirectAttributes);
     }
 
     @GetMapping("/")
