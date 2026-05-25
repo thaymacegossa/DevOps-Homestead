@@ -19,6 +19,12 @@ import java.util.List;
 @Slf4j
 public class ListaComprasController {
 
+    private final String FLASH_MESSAGE = "mensagem";
+    private final String FLASH_TYPE = "tipo";
+    private final String TIPO_SUCESSO = "sucesso";
+    private final String TIPO_ERRO = "erro";
+    private final String REDIRECT_LISTAGEM = "redirect:/lista-compras";
+
     private final ListaComprasService service;
 
     @GetMapping
@@ -46,15 +52,15 @@ public class ListaComprasController {
                        RedirectAttributes redirectAttributes) {
         try {
             service.criar(item);
-            redirectAttributes.addFlashAttribute("mensagem", "Item criado com sucesso!");
-            redirectAttributes.addFlashAttribute("tipo", "sucesso");
+            redirectAttributes.addFlashAttribute(FLASH_MESSAGE, "Item criado com sucesso!");
+            redirectAttributes.addFlashAttribute(FLASH_TYPE, TIPO_SUCESSO);
 
-            return "redirect:/lista-compras";
+            return REDIRECT_LISTAGEM;
         } catch (Exception e) {
             log.error("Erro ao criar item", e);
-            redirectAttributes.addFlashAttribute("mensagem", "Erro ao criar item: " + e.getMessage());
-            redirectAttributes.addFlashAttribute("tipo", "erro");
-            return "redirect:/lista-compras/novo";
+            redirectAttributes.addFlashAttribute(FLASH_MESSAGE, "Erro ao criar item: " + e.getMessage());
+            redirectAttributes.addFlashAttribute(FLASH_TYPE, TIPO_ERRO);
+            return REDIRECT_LISTAGEM + "/novo";
         }
     }
 
@@ -68,9 +74,9 @@ public class ListaComprasController {
             return "lista-compras/form";
         } catch (Exception e) {
             log.error("Erro ao acessar formulário de edição", e);
-            redirectAttributes.addFlashAttribute("mensagem", "Item não encontrado");
-            redirectAttributes.addFlashAttribute("tipo", "erro");
-            return "redirect:/lista-compras";
+            redirectAttributes.addFlashAttribute(FLASH_MESSAGE, "Item não encontrado");
+            redirectAttributes.addFlashAttribute(FLASH_TYPE, TIPO_ERRO);
+            return REDIRECT_LISTAGEM;
         }
     }
 
@@ -79,15 +85,15 @@ public class ListaComprasController {
                            RedirectAttributes redirectAttributes) {
         try {
             service.atualizar(item);
-            redirectAttributes.addFlashAttribute("mensagem", "Item atualizado com sucesso!");
-            redirectAttributes.addFlashAttribute("tipo", "sucesso");
+            redirectAttributes.addFlashAttribute(FLASH_MESSAGE, "Item atualizado com sucesso!");
+            redirectAttributes.addFlashAttribute(FLASH_TYPE, TIPO_SUCESSO);
 
-            return "redirect:/lista-compras";
+            return REDIRECT_LISTAGEM;
         } catch (Exception e) {
             log.error("Erro ao atualizar item", e);
-            redirectAttributes.addFlashAttribute("mensagem", "Erro ao atualizar item: " + e.getMessage());
-            redirectAttributes.addFlashAttribute("tipo", "erro");
-            return "redirect:/lista-compras/" + item.getId() + "/editar";
+            redirectAttributes.addFlashAttribute(FLASH_MESSAGE, "Erro ao atualizar item: " + e.getMessage());
+            redirectAttributes.addFlashAttribute(FLASH_TYPE, TIPO_ERRO);
+            return REDIRECT_LISTAGEM + "/" + item.getId() + "/editar";
         }
     }
 
@@ -95,21 +101,21 @@ public class ListaComprasController {
     public String deletar(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         try {
             service.deletar(id);
-            redirectAttributes.addFlashAttribute("mensagem", "Item deletado com sucesso!");
-            redirectAttributes.addFlashAttribute("tipo", "sucesso");
+            redirectAttributes.addFlashAttribute(FLASH_MESSAGE, "Item deletado com sucesso!");
+            redirectAttributes.addFlashAttribute(FLASH_TYPE, TIPO_SUCESSO);
 
-            return "redirect:/lista-compras";
+            return REDIRECT_LISTAGEM;
         } catch (Exception e) {
             log.error("Erro ao deletar item", e);
-            redirectAttributes.addFlashAttribute("mensagem", "Erro ao deletar item: " + e.getMessage());
-            redirectAttributes.addFlashAttribute("tipo", "erro");
-            return "redirect:/lista-compras";
+            redirectAttributes.addFlashAttribute(FLASH_MESSAGE, "Erro ao deletar item: " + e.getMessage());
+            redirectAttributes.addFlashAttribute(FLASH_TYPE, TIPO_ERRO);
+            return REDIRECT_LISTAGEM;
         }
     }
 
     @GetMapping("/")
     public String index() {
-        return "redirect:/lista-compras";
+        return REDIRECT_LISTAGEM;
     }
     
 }

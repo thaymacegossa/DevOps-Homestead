@@ -18,6 +18,8 @@ import java.util.List;
 @Transactional
 public class ListaComprasService {
 
+    private final String ID_NAO_ENCONTRADO = "Tarefa não encontrada com ID: ";
+
     private final ListaComprasRepository repository;
 
     @Transactional(readOnly = true)
@@ -29,7 +31,7 @@ public class ListaComprasService {
     public ListaCompras buscarPorId(Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> {
-                    return new IllegalArgumentException("Item não encontrado com ID: " + id);
+                    return new IllegalArgumentException(ID_NAO_ENCONTRADO + id);
                 });
     }
 
@@ -46,7 +48,7 @@ public class ListaComprasService {
     public ListaCompras atualizar(ListaCompras formItem) {
         ListaCompras item = repository.findById(formItem.getId())
                 .orElseThrow(() -> {
-                    return new IllegalArgumentException("Item não encontrado com ID: " + formItem.getId());
+                    return new IllegalArgumentException(ID_NAO_ENCONTRADO + formItem.getId());
                 });
 
         validar(formItem);
@@ -62,7 +64,7 @@ public class ListaComprasService {
 
     public void deletar(Long id) {
         if (!repository.existsById(id)) {
-            throw new IllegalArgumentException("Item não encontrado com ID: " + id);
+            throw new IllegalArgumentException(ID_NAO_ENCONTRADO + id);
         }
 
         repository.deleteById(id);

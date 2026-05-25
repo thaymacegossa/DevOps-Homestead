@@ -17,6 +17,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Transactional
 public class ListaAfazeresService {
+    
+    private final String ID_NAO_ENCONTRADO = "Tarefa não encontrada com ID: ";
 
     private final ListaAfazeresRepository repository;
 
@@ -29,7 +31,7 @@ public class ListaAfazeresService {
     public ListaAfazeres buscarPorId(Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> {
-                    return new IllegalArgumentException("Tarefa não encontrada com ID: " + id);
+                    return new IllegalArgumentException(ID_NAO_ENCONTRADO + id);
                 });
     }
 
@@ -46,7 +48,7 @@ public class ListaAfazeresService {
     public ListaAfazeres atualizar(ListaAfazeres formTarefa) {
         ListaAfazeres tarefa = repository.findById(formTarefa.getId())
                 .orElseThrow(() -> {
-                    return new IllegalArgumentException("Tarefa não encontrada com ID: " + formTarefa.getId());
+                    return new IllegalArgumentException(ID_NAO_ENCONTRADO + formTarefa.getId());
                 });
 
         validar(formTarefa);
@@ -64,7 +66,7 @@ public class ListaAfazeresService {
     public void deletar(Long id) {
         ListaAfazeres tarefa = repository.findById(id)
                 .orElseThrow(() -> {
-                    return new IllegalArgumentException("Tarefa não encontrada com ID: " + id);
+                    return new IllegalArgumentException(ID_NAO_ENCONTRADO + id);
                 });
 
         repository.delete(tarefa);
