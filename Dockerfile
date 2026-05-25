@@ -8,8 +8,8 @@ COPY pom.xml .
 COPY src/ src/
 COPY mvnw mvnw.cmd ./
 
-# Build do projeto
-RUN mvn clean package -DskipTests
+# Build do projeto <-DskipTests>
+RUN mvn clean package
 
 # Stage 2: Runtime
 FROM eclipse-temurin:21-jre-jammy
