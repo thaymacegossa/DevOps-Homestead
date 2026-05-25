@@ -22,11 +22,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ListaAfazeresController {
 
-    private final String FLASH_MESSAGE = "mensagem";
-    private final String FLASH_TYPE = "tipo";
-    private final String TIPO_SUCESSO = "sucesso";
-    private final String TIPO_ERRO = "erro";
-    private final String REDIRECT_LISTAGEM = "redirect:/lista-afazeres";
+    private static String FLASH_MESSAGE = "mensagem";
+    private static String FLASH_TYPE = "tipo";
+    private static String TIPO_SUCESSO = "sucesso";
+    private static String TIPO_ERRO = "erro";
+    private static String REDIRECT_LISTAGEM = "redirect:/lista-afazeres";
 
     private final ListaAfazeresService service;
 

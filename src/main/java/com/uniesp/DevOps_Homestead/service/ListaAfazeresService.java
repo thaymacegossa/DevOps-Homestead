@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @Transactional
 public class ListaAfazeresService {
     
-    private final String ID_NAO_ENCONTRADO = "Tarefa não encontrada com ID: ";
+    private static String ID_NAO_ENCONTRADO = "Tarefa não encontrada com ID: ";
 
     private final ListaAfazeresRepository repository;
 

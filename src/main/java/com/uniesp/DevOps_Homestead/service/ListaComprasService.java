@@ -18,7 +18,7 @@ import java.util.List;
 @Transactional
 public class ListaComprasService {
 
-    private final String ID_NAO_ENCONTRADO = "Tarefa não encontrada com ID: ";
+    private static String ID_NAO_ENCONTRADO = "Item não encontrado com ID: ";
 
     private final ListaComprasRepository repository;
 

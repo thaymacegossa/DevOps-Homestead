@@ -19,11 +19,11 @@ import java.util.List;
 @Slf4j
 public class ListaComprasController {
 
-    private final String FLASH_MESSAGE = "mensagem";
-    private final String FLASH_TYPE = "tipo";
-    private final String TIPO_SUCESSO = "sucesso";
-    private final String TIPO_ERRO = "erro";
-    private final String REDIRECT_LISTAGEM = "redirect:/lista-compras";
+    private static String FLASH_MESSAGE = "mensagem";
+    private static String FLASH_TYPE = "tipo";
+    private static String TIPO_SUCESSO = "sucesso";
+    private static String TIPO_ERRO = "erro";
+    private static String REDIRECT_LISTAGEM = "redirect:/lista-compras";
 
     private final ListaComprasService service;
 
