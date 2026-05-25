@@ -180,6 +180,13 @@
 						<goals>
 							<goal>report</goal>
 						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/jacoco</outputDirectory>
+							<reports>
+								<xml>true</xml>
+								<html>true</html>
+							</reports>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
