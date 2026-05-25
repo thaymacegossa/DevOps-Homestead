@@ -1,12 +1,13 @@
 package com.uniesp.DevOps_Homestead.web;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.uniesp.DevOps_Homestead.service.ListaAfazeresService;
 import com.uniesp.DevOps_Homestead.service.ListaComprasService;
+
+import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
