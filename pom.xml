@@ -9,7 +9,7 @@
 		<version>4.0.6</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.ifpb</groupId>
+	<groupId>com.uniesp</groupId>
 	<artifactId>DevOps-Homestead</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name />
@@ -180,6 +180,13 @@
 						<goals>
 							<goal>report</goal>
 						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/jacoco</outputDirectory>
+							<reports>
+								<xml>true</xml>
+								<html>true</html>
+							</reports>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>

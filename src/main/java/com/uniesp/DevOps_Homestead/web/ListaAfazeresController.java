@@ -1,4 +1,4 @@
-package com.ifpb.DevOps_Homestead.web;
+package com.uniesp.DevOps_Homestead.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.ifpb.DevOps_Homestead.domain.ListaAfazeres;
-import com.ifpb.DevOps_Homestead.service.ListaAfazeresService;
+import com.uniesp.DevOps_Homestead.domain.ListaAfazeres;
+import com.uniesp.DevOps_Homestead.service.ListaAfazeresService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +21,8 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class ListaAfazeresController {
+
+    private static String REDIRECT_LISTAGEM = "redirect:/lista-afazeres";
 
     private final ListaAfazeresService service;
 
@@ -42,18 +44,14 @@ public class ListaAfazeresController {
     @PostMapping
     public String criar(@ModelAttribute ListaAfazeres item,
                        RedirectAttributes redirectAttributes) {
-        try {
-            service.criar(item);
-            redirectAttributes.addFlashAttribute("mensagem", "Tarefa criada com sucesso!");
-            redirectAttributes.addFlashAttribute("tipo", "sucesso");
-
-            return "redirect:/lista-afazeres";
-        } catch (Exception e) {
-            log.error("Erro ao criar tarefa", e);
-            redirectAttributes.addFlashAttribute("mensagem", "Erro ao criar tarefa: " + e.getMessage());
-            redirectAttributes.addFlashAttribute("tipo", "erro");
-            return "redirect:/lista-afazeres/novo";
-        }
+        return HelperController.criarComRedirecionamento(
+                () -> service.criar(item),
+                "Tarefa criada com sucesso!",
+                "Erro ao criar tarefa",
+                REDIRECT_LISTAGEM,
+                REDIRECT_LISTAGEM + "/novo",
+                redirectAttributes);
+            
     }
 
     @GetMapping("/{id}/editar")
@@ -67,44 +65,35 @@ public class ListaAfazeresController {
             log.error("Erro ao buscar tarefa para edição", e);
             model.addAttribute("mensagem", "Tarefa não encontrada: " + e.getMessage());
             model.addAttribute("tipo", "erro");
-            return "redirect:/lista-afazeres";
+            return REDIRECT_LISTAGEM;
         }
     }
 
     @PostMapping("/atualizar")
     public String atualizar(@ModelAttribute ListaAfazeres item,
                             RedirectAttributes redirectAttributes) {
-        try {
-            service.atualizar(item);
-            redirectAttributes.addFlashAttribute("mensagem", "Tarefa atualizada com sucesso!");
-            redirectAttributes.addFlashAttribute("tipo", "sucesso");
-            
-            return "redirect:/lista-afazeres";
-        } catch (Exception e) {
-            log.error("Erro ao atualizar tarefa", e);
-            redirectAttributes.addFlashAttribute("mensagem", "Erro ao atualizar tarefa: " + e.getMessage());
-            redirectAttributes.addFlashAttribute("tipo", "erro");
-            return "redirect:/lista-afazeres/" + item.getId() + "/editar";
-        }
+        return HelperController.atualizarComRedirecionamento(
+                () -> service.atualizar(item),
+                "Tarefa atualizada com sucesso!",
+                "Erro ao atualizar tarefa",
+                REDIRECT_LISTAGEM,
+                () -> REDIRECT_LISTAGEM + "/" + item.getId() + "/editar",
+                redirectAttributes);
     }
 
     @GetMapping("/{id}/deletar")
     public String deletar(@PathVariable Long id, RedirectAttributes redirectAttributes) {
-        try {
-            service.deletar(id);
-            redirectAttributes.addFlashAttribute("mensagem", "Tarefa deletada com sucesso!");
-            redirectAttributes.addFlashAttribute("tipo", "sucesso");
-        } catch (Exception e) {
-            log.error("Erro ao deletar tarefa", e);
-            redirectAttributes.addFlashAttribute("mensagem", "Erro ao deletar tarefa: " + e.getMessage());
-            redirectAttributes.addFlashAttribute("tipo", "erro");
-        }
-        return "redirect:/lista-afazeres";
+        return HelperController.deletarComRedirecionamento(
+                () -> service.deletar(id),
+                "Tarefa deletada com sucesso!",
+                "Erro ao deletar tarefa",
+                REDIRECT_LISTAGEM,
+                redirectAttributes);
     }
 
     @GetMapping("/")
     public String index() {
-        return "redirect:/lista-afazeres";
+        return REDIRECT_LISTAGEM;
     }
     
 }

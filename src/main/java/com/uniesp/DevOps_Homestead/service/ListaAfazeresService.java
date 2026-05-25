@@ -1,13 +1,13 @@
-package com.ifpb.DevOps_Homestead.service;
+package com.uniesp.DevOps_Homestead.service;
 
-import java.util.List;
 import java.time.LocalDateTime;
-
-import com.ifpb.DevOps_Homestead.domain.ListaAfazeres;
-import com.ifpb.DevOps_Homestead.repository.ListaAfazeresRepository;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.uniesp.DevOps_Homestead.domain.ListaAfazeres;
+import com.uniesp.DevOps_Homestead.repository.ListaAfazeresRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +17,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Transactional
 public class ListaAfazeresService {
+    
+    private static String ID_NAO_ENCONTRADO = "Tarefa não encontrada com ID: ";
 
     private final ListaAfazeresRepository repository;
 
@@ -29,7 +31,7 @@ public class ListaAfazeresService {
     public ListaAfazeres buscarPorId(Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> {
-                    return new IllegalArgumentException("Tarefa não encontrada com ID: " + id);
+                    return new IllegalArgumentException(ID_NAO_ENCONTRADO + id);
                 });
     }
 
@@ -46,7 +48,7 @@ public class ListaAfazeresService {
     public ListaAfazeres atualizar(ListaAfazeres formTarefa) {
         ListaAfazeres tarefa = repository.findById(formTarefa.getId())
                 .orElseThrow(() -> {
-                    return new IllegalArgumentException("Tarefa não encontrada com ID: " + formTarefa.getId());
+                    return new IllegalArgumentException(ID_NAO_ENCONTRADO + formTarefa.getId());
                 });
 
         validar(formTarefa);
@@ -64,7 +66,7 @@ public class ListaAfazeresService {
     public void deletar(Long id) {
         ListaAfazeres tarefa = repository.findById(id)
                 .orElseThrow(() -> {
-                    return new IllegalArgumentException("Tarefa não encontrada com ID: " + id);
+                    return new IllegalArgumentException(ID_NAO_ENCONTRADO + id);
                 });
 
         repository.delete(tarefa);

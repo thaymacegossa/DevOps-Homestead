@@ -1,4 +1,4 @@
-package com.ifpb.DevOps_Homestead.config;
+package com.uniesp.DevOps_Homestead.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
