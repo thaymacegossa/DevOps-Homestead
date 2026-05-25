@@ -1,4 +1,4 @@
-package com.ifpb.DevOps_Homestead.web;
+package com.uniesp.DevOps_Homestead.web;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
 import com.ifpb.DevOps_Homestead.domain.ListaAfazeres;
 import com.ifpb.DevOps_Homestead.service.ListaAfazeresService;
+import com.ifpb.DevOps_Homestead.web.ListaAfazeresController;
 
 @ExtendWith(MockitoExtension.class)
 class ListaAfazeresControllerTest {

@@ -1,4 +1,4 @@
-package com.ifpb.DevOps_Homestead.service;
+package com.uniesp.DevOps_Homestead.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -20,6 +20,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.ifpb.DevOps_Homestead.domain.ListaAfazeres;
 import com.ifpb.DevOps_Homestead.repository.ListaAfazeresRepository;
+import com.ifpb.DevOps_Homestead.service.ListaAfazeresService;
 
 @ExtendWith(MockitoExtension.class)
 class ListaAfazeresServiceTest {

@@ -1,9 +1,11 @@
-package com.ifpb.DevOps_Homestead;
+package com.uniesp.DevOps_Homestead;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.ifpb.DevOps_Homestead.DevOpsHomesteadApplication;
 
 class DevOpsHomesteadApplicationTests {
 

@@ -1,4 +1,4 @@
-package com.ifpb.DevOps_Homestead.web;
+package com.uniesp.DevOps_Homestead.web;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
@@ -17,6 +17,7 @@ import com.ifpb.DevOps_Homestead.domain.ListaAfazeres;
 import com.ifpb.DevOps_Homestead.domain.ListaCompras;
 import com.ifpb.DevOps_Homestead.service.ListaAfazeresService;
 import com.ifpb.DevOps_Homestead.service.ListaComprasService;
+import com.ifpb.DevOps_Homestead.web.HomeController;
 
 @ExtendWith(MockitoExtension.class)
 class HomeControllerTest {

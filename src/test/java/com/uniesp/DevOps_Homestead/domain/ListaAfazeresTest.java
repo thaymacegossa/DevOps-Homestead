@@ -1,8 +1,10 @@
-package com.ifpb.DevOps_Homestead.domain;
+package com.uniesp.DevOps_Homestead.domain;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
+
+import com.ifpb.DevOps_Homestead.domain.ListaAfazeres;
 
 class ListaAfazeresTest {
 
