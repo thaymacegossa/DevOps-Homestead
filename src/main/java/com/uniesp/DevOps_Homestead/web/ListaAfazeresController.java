@@ -23,6 +23,8 @@ import lombok.extern.slf4j.Slf4j;
 public class ListaAfazeresController {
 
     private final ListaAfazeresService service;
+    private final String flashMessage = "mensagem";
+    private final String flashType = "tipo";
 
     @GetMapping
     public String listar(Model model) {
@@ -44,14 +46,14 @@ public class ListaAfazeresController {
                        RedirectAttributes redirectAttributes) {
         try {
             service.criar(item);
-            redirectAttributes.addFlashAttribute("mensagem", "Tarefa criada com sucesso!");
-            redirectAttributes.addFlashAttribute("tipo", "sucesso");
+            redirectAttributes.addFlashAttribute(flashMessage, "Tarefa criada com sucesso!");
+            redirectAttributes.addFlashAttribute(flashType, "sucesso");
 
             return "redirect:/lista-afazeres";
         } catch (Exception e) {
             log.error("Erro ao criar tarefa", e);
-            redirectAttributes.addFlashAttribute("mensagem", "Erro ao criar tarefa: " + e.getMessage());
-            redirectAttributes.addFlashAttribute("tipo", "erro");
+            redirectAttributes.addFlashAttribute(flashMessage, "Erro ao criar tarefa: " + e.getMessage());
+            redirectAttributes.addFlashAttribute(flashType, "erro");
             return "redirect:/lista-afazeres/novo";
         }
     }
@@ -65,8 +67,8 @@ public class ListaAfazeresController {
             return "lista-afazeres/form";
         } catch (Exception e) {
             log.error("Erro ao buscar tarefa para edição", e);
-            model.addAttribute("mensagem", "Tarefa não encontrada: " + e.getMessage());
-            model.addAttribute("tipo", "erro");
+            model.addAttribute(flashMessage, "Tarefa não encontrada: " + e.getMessage());
+            model.addAttribute(flashType, "erro");
             return "redirect:/lista-afazeres";
         }
     }
@@ -76,14 +78,14 @@ public class ListaAfazeresController {
                             RedirectAttributes redirectAttributes) {
         try {
             service.atualizar(item);
-            redirectAttributes.addFlashAttribute("mensagem", "Tarefa atualizada com sucesso!");
-            redirectAttributes.addFlashAttribute("tipo", "sucesso");
+            redirectAttributes.addFlashAttribute(flashMessage, "Tarefa atualizada com sucesso!");
+            redirectAttributes.addFlashAttribute(flashType, "sucesso");
             
             return "redirect:/lista-afazeres";
         } catch (Exception e) {
             log.error("Erro ao atualizar tarefa", e);
-            redirectAttributes.addFlashAttribute("mensagem", "Erro ao atualizar tarefa: " + e.getMessage());
-            redirectAttributes.addFlashAttribute("tipo", "erro");
+            redirectAttributes.addFlashAttribute(flashMessage, "Erro ao atualizar tarefa: " + e.getMessage());
+            redirectAttributes.addFlashAttribute(flashType, "erro");
             return "redirect:/lista-afazeres/" + item.getId() + "/editar";
         }
     }
@@ -92,12 +94,12 @@ public class ListaAfazeresController {
     public String deletar(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         try {
             service.deletar(id);
-            redirectAttributes.addFlashAttribute("mensagem", "Tarefa deletada com sucesso!");
-            redirectAttributes.addFlashAttribute("tipo", "sucesso");
+            redirectAttributes.addFlashAttribute(flashMessage, "Tarefa deletada com sucesso!");
+            redirectAttributes.addFlashAttribute(flashType, "sucesso");
         } catch (Exception e) {
             log.error("Erro ao deletar tarefa", e);
-            redirectAttributes.addFlashAttribute("mensagem", "Erro ao deletar tarefa: " + e.getMessage());
-            redirectAttributes.addFlashAttribute("tipo", "erro");
+            redirectAttributes.addFlashAttribute(flashMessage, "Erro ao deletar tarefa: " + e.getMessage());
+            redirectAttributes.addFlashAttribute(flashType, "erro");
         }
         return "redirect:/lista-afazeres";
     }
